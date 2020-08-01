@@ -12,6 +12,9 @@ CKnave = Symbol("C is a Knave")
 # Puzzle 0
 # A says "I am both a knight and a knave."
 knowledge0 = And(
+    And(Or(Not(AKnight),Not(AKnave)),Or(AKnave,AKnight)),
+    Or(Or(Not(AKnave),Not(AKnight)),Or(AKnave,AKnight)),
+    Or(AKnave,Not(AKnight))
     # TODO
 )
 
@@ -19,6 +22,11 @@ knowledge0 = And(
 # A says "We are both knaves."
 # B says nothing.
 knowledge1 = And(
+    And(Or(Not(AKnight),Not(BKnight)),Or(BKnight,AKnight)),
+    And(Or(Not(AKnave),Not(BKnave)),Or(BKnave,AKnave)),
+    And(Or(Not(AKnight),Not(AKnave)),Or(AKnave,AKnight)),
+    And(Or(Not(BKnight),Not(BKnave)),Or(BKnave,BKnight)),
+    Or(Not(BKnave),AKnave)
     # TODO
 )
 
@@ -26,6 +34,12 @@ knowledge1 = And(
 # A says "We are the same kind."
 # B says "We are of different kinds."
 knowledge2 = And(
+    And(Or(Not(AKnight),Not(BKnight)),Or(BKnight,AKnight)),
+    And(Or(Not(AKnave),Not(BKnave)),Or(BKnave,AKnave)),
+    And(Or(Not(AKnight),Not(AKnave)),Or(AKnave,AKnight)),
+    And(Or(Not(BKnight),Not(BKnave)),Or(BKnave,BKnight)),
+    Implication(Or(And(AKnave,BKnave),And(AKnight,BKnight)),AKnave),
+    Implication(And(Or(AKnave,BKnave),Or(AKnight,BKnight)),BKnight)
     # TODO
 )
 
@@ -35,6 +49,11 @@ knowledge2 = And(
 # B says "C is a knave."
 # C says "A is a knight."
 knowledge3 = And(
+    And(Or(Not(AKnight),Not(BKnight)),Or(BKnight,AKnight)),
+    And(Or(Not(AKnave),Not(BKnave)),Or(BKnave,AKnave)),
+    And(Or(Not(AKnight),Not(AKnave)),Or(AKnave,AKnight)),
+    And(Or(Not(BKnight),Not(BKnave)),Or(BKnave,BKnight)),
+    And(Or(Not(CKnight),Not(CKnave)),Or(CKnave,CKnight)),
     # TODO
 )
 
