@@ -187,17 +187,33 @@ class MinesweeperAI():
         Called when the Minesweeper board tells us, for a given
         safe cell, how many neighboring cells have mines in them.
 
-        This function should:
-            1) mark the cell as a move that has been made
-            2) mark the cell as safe
-            3) add a new sentence to the AI's knowledge base
-               based on the value of `cell` and `count`
-            4) mark any additional cells as safe or as mines
-               if it can be concluded based on the AI's knowledge base
-            5) add any new sentences to the AI's knowledge base
-               if they can be inferred from existing knowledge
+        CAT: Ha d'actualitzar self.mines, self.safes, self.moves_made i self.knowloedge
+             Donar que la cell is coneguda per ser segura amb count mines de veines
         """
+        nearby_cells = []
+        #This function should:
+        #    1) mark the cell as a move that has been made
+        self.moves_made.add(cell)
+        #    2) mark the cell as safe
+        self.mark_safe(cell)
+        #    3) add a new sentence to the AI's knowledge base
+        #       based on the value of `cell` and `count`
+        for i in range(cell[0]-1,cell[0]+2):
+            for j in range(cell[1]-1, cell[1]+2):
+                if self.cell[i][j] == cell:
+                    continue
+                if cell[i][j] not in self.safes and i>=0 and j>=0:
+                    nearby_cells.add(self.cell[i][j])
+
+        self.knowledge.add((nearby_cells,count))
+        #    4) mark any additional cells as safe or as mines
+        #       if it can be concluded based on the AI's knowledge base
+        
+        #    5) add any new sentences to the AI's knowledge base
+        #       if they can be inferred from existing knowledge
+        
         raise NotImplementedError
+
 
     def make_safe_move(self):
         """
@@ -208,7 +224,11 @@ class MinesweeperAI():
         This function may use the knowledge in self.mines, self.safes
         and self.moves_made, but should not modify any of those values.
         """
-        raise NotImplementedError
+        safe_move = set()
+        if:
+            return safe_move
+        else:
+            return None
 
     def make_random_move(self):
         """
@@ -217,4 +237,6 @@ class MinesweeperAI():
             1) have not already been chosen, and
             2) are not known to be mines
         """
-        raise NotImplementedError
+        random_move = set()
+        if:
+            return random_move
